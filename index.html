@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>RBSE TrackPro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: Segoe UI, sans-serif;
+        background: #f4f6fb;
+      }
+
+      header {
+        background: #0e2927;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 20px;
+      }
+
+      .subject-card {
+        background: #fff;
+        border-radius: 14px;
+        padding: 16px;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .subject-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .subject-header h2 {
+        margin: 0;
+        color: #0e2927;
+      }
+
+      .arrow {
+        font-size: 20px;
+        transition: 0.3s;
+      }
+
+      .progress-bar {
+        background: #e5e7eb;
+        border-radius: 10px;
+        overflow: hidden;
+        height: 10px;
+        margin-top: 10px;
+      }
+
+      .progress {
+        height: 100%;
+        width: 0%;
+        background: #22c55e;
+        transition: 0.4s;
+      }
+
+      .chapters {
+        display: none;
+        margin-top: 15px;
+      }
+
+      .chapter {
+        border-bottom: 1px solid #e5e7eb;
+        padding: 10px 0;
+      }
+
+      .chapter:last-child {
+        border-bottom: none;
+      }
+
+      .chapter-title {
+        font-weight: 600;
+      }
+
+      .options {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        font-size: 14px;
+        margin-top: 5px;
+      }
+
+      .status {
+        font-size: 13px;
+        margin-top: 4px;
+        font-weight: 600;
+      }
+
+      .completed {
+        color: #16a34a;
+      }
+      .incomplete {
+        color: #dc2626;
+      }
+
+      footer {
+        text-align: center;
+        padding: 15px;
+        color: #555;
+      }
+      .hidden {
+  display: none;
+}
+
+.back-btn {
+  background: #0e2927;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>RBSE Class 12 Study Tracker (2026)</h1>
+      <p>Science (Maths)</p>
+    </header>
+
+    <div class="container" id="app"></div>
+
+    <footer>Designed for RBSE Students (By Mukesh) ❤️</footer>
+
+    <script>
+      const syllabus = {
+        Mathematics: [
+          "Relations and Functions",
+          "Inverse Trigonometric Functions",
+          "Matrices",
+          "Determinants",
+          "Continuity and Differentiability",
+          "Application of Derivatives",
+          "Integrals",
+          "Application of Integrals",
+          "Differential Equations",
+          "Vector Algebra",
+          "Three Dimensional Geometry",
+          "Linear Programming",
+          "Probability",
+        ],
+        Physics: [
+          "Electric Charges and Fields",
+          "Electrostatic Potential and Capacitance",
+          "Current Electricity",
+          "Moving Charges and Magnetism",
+          "Magnetism and Matter",
+          "Electromagnetic Induction",
+          "Alternating Current",
+          "Electromagnetic Waves",
+          "Ray Optics and Optical Instruments",
+          "Wave Optics",
+          "Dual Nature of Radiation and Matter",
+          "Atoms",
+          "Nuclei",
+          "Semiconductor Electronics: Materials, Devices and Simple Circuits",
+        ],
+        Chemistry: [
+          "The Solid State",
+          "Solutions",
+          "Electrochemistry",
+          "Chemical Kinetics",
+          "Surface Chemistry",
+          "General Principles and Processes of Isolation of Elements",
+          "The p-Block Elements",
+          "The d- and f-Block Elements",
+          "Coordination Compounds",
+          "Haloalkanes and Haloarenes",
+          "Alcohols, Phenols and Ethers",
+          "Aldehydes, Ketones and Carboxylic Acids",
+          "Amines",
+          "Biomolecules",
+          "Polymers",
+          "Chemistry in Everyday Life",
+        ],
+        Hindi_aarohGadya: [
+          "भक्तिन",
+          "बाजार दर्शन",
+          "काले मेघा पानी दे",
+          "पहलवान की ढोलक",
+          "शिरीष के फूल",
+          "जामुन का पेड़",
+          "आत्मपरिचय",
+        ],
+        Hindi_aarohKavya: [
+          "जयशंकर प्रसाद",
+          "सूरदास",
+          "तुलसीदास",
+          "निराला",
+          "नागार्जुन",
+          "केदारनाथ अग्रवाल",
+          "रामधारी सिंह दिनकर",
+        ],
+        Hindi_vitan: [
+          "सिल्वर वैडिंग",
+          "जूझ",
+          "अतीत में दबे पाँव",
+          "डायरी के पन्ने",
+        ],
+        Hindi_Gramer: [
+          "संधि",
+          "समास",
+          "उपसर्ग और प्रत्यय",
+          "अलंकार",
+          "रस",
+          "छंद",
+          "वाक्य भेद",
+          "वाच्य",
+          "काल",
+          "कारक",
+          "लिंग",
+          "वचन",
+          "पर्यायवाची शब्द",
+          "विलोम शब्द",
+          "मुहावरे और लोकोक्तियाँ",
+          "शब्द शुद्धि",
+          "वाक्य शुद्धि",
+          "लेखन के प्रकार",
+          "पत्र लेखन",
+          "निबंध लेखन",
+          "संवाद लेखन",
+          "विज्ञापन लेखन",
+          "सूचना लेखन",
+          "रिपोर्ट लेखन",
+          "प्रेस विज्ञप्ति",
+        ],
+        English_Flamingo_Prose: [
+          "The Last Lesson",
+          "Lost Spring",
+          "Deep Water",
+          "The Rattrap",
+          "Indigo",
+          "Poets and Pancakes",
+          "The Interview",
+          "Going Places",
+        ],
+        English_Flamingo_Poetry: [
+          "My Mother at Sixty-Six",
+          "An Elementary School Classroom in a Slum",
+          "Keeping Quiet",
+          "A Thing of Beauty",
+          "A Roadside Stand",
+          "Aunt Jennifer’s Tigers",
+        ],
+        English_Vistas: [
+          "The Third Level",
+          "The Tiger King",
+          "Journey to the End of the Earth",
+          "The Enemy",
+          "Should Wizard Hit Mommy?",
+          "On the Face of It",
+          "Evans Tries an O-Level",
+          "Memories of Childhood",
+        ],
+        English_Gramer: [
+          "Tenses",
+          "Modals",
+          "Active and Passive Voice",
+          "Direct and Indirect Speech (Narration)",
+          "Subject–Verb Agreement",
+          "Articles",
+          "Prepositions",
+          "Conjunctions",
+          "Determiners",
+          "Clauses",
+          "Reported Speech (Statements, Questions, Commands)",
+          "Transformation of Sentences",
+          "Editing and Omission",
+          "Sentence Reordering (Jumbled Sentences)",
+          "Gap Filling",
+          "Error Correction",
+        ],
+      };
+
+     
+const app = document.getElementById("app");
+const data = JSON.parse(localStorage.getItem("rbseTracker")) || {};
+
+function save() {
+  localStorage.setItem("rbseTracker", JSON.stringify(data));
+}
+
+function subjectListView() {
+  app.innerHTML = "";
+
+  for (const subject in syllabus) {
+    const card = document.createElement("div");
+    card.className = "subject-card";
+
+    card.innerHTML = `
+      <div class="subject-header">
+        <h2>${subject}</h2>
+        <span class="arrow">➡</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+    `;
+
+    const progress = card.querySelector(".progress");
+
+    updateProgress(subject, progress);
+
+    card.onclick = () => subjectDetailView(subject);
+
+    app.appendChild(card);
+  }
+}
+
+function subjectDetailView(subject) {
+  app.innerHTML = "";
+
+  const card = document.createElement("div");
+  card.className = "subject-card";
+
+  card.innerHTML = `
+    <button class="back-btn">⬅ Back</button>
+    <h2 style="color:#0e2927">${subject}</h2>
+  `;
+
+  card.querySelector(".back-btn").onclick = subjectListView;
+
+  syllabus[subject].forEach((ch) => {
+    const key = subject + "-" + ch;
+    data[key] ||= { theory: false, questions: false, mcq: false };
+
+    const completed =
+      data[key].theory && data[key].questions && data[key].mcq;
+
+    const div = document.createElement("div");
+    div.className = "chapter";
+
+    div.innerHTML = `
+      <div class="chapter-title">${ch}</div>
+      <div class="options">
+        <label><input type="checkbox" ${data[key].theory?"checked":""}> Theory</label>
+        <label><input type="checkbox" ${data[key].questions?"checked":""}> Questions</label>
+        <label><input type="checkbox" ${data[key].mcq?"checked":""}> MCQ</label>
+      </div>
+      <div class="status ${completed?"completed":"incomplete"}">
+        ${completed?"Completed":"Incomplete"}
+      </div>
+    `;
+
+    const boxes = div.querySelectorAll("input");
+
+    boxes[0].onchange = e => data[key].theory = e.target.checked;
+    boxes[1].onchange = e => data[key].questions = e.target.checked;
+    boxes[2].onchange = e => data[key].mcq = e.target.checked;
+
+    boxes.forEach(b =>
+      b.addEventListener("change", () => {
+        save();
+        subjectDetailView(subject);
+      })
+    );
+
+    card.appendChild(div);
+  });
+
+  app.appendChild(card);
+}
+
+function updateProgress(subject, bar) {
+  const chapters = syllabus[subject];
+  let done = 0;
+  chapters.forEach(ch => {
+    const k = subject + "-" + ch;
+    if (data[k]?.theory && data[k]?.questions && data[k]?.mcq) done++;
+  });
+  bar.style.width = (done / chapters.length) * 100 + "%";
+}
+
+// INITIAL LOAD
+subjectListView();
+    </script>
+  </body>
+</html>
