@@ -13,7 +13,7 @@
       }
 
       header {
-        background: #0e2927;
+        background: #261b21;
         color: white;
         padding: 20px;
         text-align: center;
@@ -42,7 +42,7 @@
 
       .subject-header h2 {
         margin: 0;
-        color: #0e2927;
+        color: #261b21;
       }
 
       .arrow {
@@ -110,19 +110,18 @@
         color: #555;
       }
       .hidden {
-  display: none;
-}
+        display: none;
+      }
 
-.back-btn {
-  background: #0e2927;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
-
+      .back-btn {
+        background: #261b21;
+        color: white;
+        border: none;
+        padding: 8px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
     </style>
   </head>
 
@@ -170,13 +169,9 @@
           "Semiconductor Electronics: Materials, Devices and Simple Circuits",
         ],
         Chemistry: [
-          "The Solid State",
           "Solutions",
           "Electrochemistry",
           "Chemical Kinetics",
-          "Surface Chemistry",
-          "General Principles and Processes of Isolation of Elements",
-          "The p-Block Elements",
           "The d- and f-Block Elements",
           "Coordination Compounds",
           "Haloalkanes and Haloarenes",
@@ -184,8 +179,6 @@
           "Aldehydes, Ketones and Carboxylic Acids",
           "Amines",
           "Biomolecules",
-          "Polymers",
-          "Chemistry in Everyday Life",
         ],
         Hindi_aarohGadya: [
           "भक्तिन",
@@ -193,50 +186,31 @@
           "काले मेघा पानी दे",
           "पहलवान की ढोलक",
           "शिरीष के फूल",
-          "जामुन का पेड़",
-          "आत्मपरिचय",
+          "भीमराव अम्बेडकर (बाबासाहेब) ",
         ],
         Hindi_aarohKavya: [
-          "जयशंकर प्रसाद",
-          "सूरदास",
+          "हरिवंश राय बच्चन",
+          "आलोक धन्वा",
+          "कुँवर नारायण",
+          "रघुवीर सहाय",
+          "शमशेर बहादुर सिंह",
+          "सूर्यकांत त्रिपाठी निराला",
           "तुलसीदास",
-          "निराला",
-          "नागार्जुन",
-          "केदारनाथ अग्रवाल",
-          "रामधारी सिंह दिनकर",
+          "फ़िराक़ गोरखपुरी",
+          "उमाशंकर जोशी",
         ],
-        Hindi_vitan: [
-          "सिल्वर वैडिंग",
-          "जूझ",
-          "अतीत में दबे पाँव",
-          "डायरी के पन्ने",
-        ],
+        Hindi_vitan: ["सिल्वर वैडिंग", "जूझ", "अतीत में दबे पाँव"],
         Hindi_Gramer: [
-          "संधि",
-          "समास",
-          "उपसर्ग और प्रत्यय",
+          "भाषा, व्याकरण एवं लिपि का परिचय",
+          "शब्द शक्ति",
           "अलंकार",
-          "रस",
-          "छंद",
-          "वाक्य भेद",
-          "वाच्य",
-          "काल",
-          "कारक",
-          "लिंग",
-          "वचन",
-          "पर्यायवाची शब्द",
-          "विलोम शब्द",
-          "मुहावरे और लोकोक्तियाँ",
-          "शब्द शुद्धि",
-          "वाक्य शुद्धि",
-          "लेखन के प्रकार",
-          "पत्र लेखन",
-          "निबंध लेखन",
-          "संवाद लेखन",
-          "विज्ञापन लेखन",
-          "सूचना लेखन",
-          "रिपोर्ट लेखन",
-          "प्रेस विज्ञप्ति",
+          "परिभाषिक शब्दावली",
+          "निबंध",
+          "पत्र एवं प्रारूप लेखन",
+          "विभिन्न माध्यमों के लिए लेखन",
+          "विशेष लेखन – स्वरूप और प्रकार",
+          "कहानी का गद्य रूपांतरण",
+          "रेडियो नाटक",
         ],
         English_Flamingo_Prose: [
           "The Last Lesson",
@@ -250,7 +224,6 @@
         ],
         English_Flamingo_Poetry: [
           "My Mother at Sixty-Six",
-          "An Elementary School Classroom in a Slum",
           "Keeping Quiet",
           "A Thing of Beauty",
           "A Roadside Stand",
@@ -261,47 +234,35 @@
           "The Tiger King",
           "Journey to the End of the Earth",
           "The Enemy",
-          "Should Wizard Hit Mommy?",
           "On the Face of It",
-          "Evans Tries an O-Level",
           "Memories of Childhood",
         ],
         English_Gramer: [
-          "Tenses",
-          "Modals",
-          "Active and Passive Voice",
-          "Direct and Indirect Speech (Narration)",
-          "Subject–Verb Agreement",
-          "Articles",
-          "Prepositions",
           "Conjunctions",
-          "Determiners",
+          "Synthesis",
+          "Phrasal verbs",
           "Clauses",
-          "Reported Speech (Statements, Questions, Commands)",
-          "Transformation of Sentences",
-          "Editing and Omission",
-          "Sentence Reordering (Jumbled Sentences)",
-          "Gap Filling",
-          "Error Correction",
+          "Report OR Paragraph",
+          "Letter OR Application",
+          "Notic OR Reply",
         ],
       };
 
-     
-const app = document.getElementById("app");
-const data = JSON.parse(localStorage.getItem("rbseTracker")) || {};
+      const app = document.getElementById("app");
+      const data = JSON.parse(localStorage.getItem("rbseTracker")) || {};
 
-function save() {
-  localStorage.setItem("rbseTracker", JSON.stringify(data));
-}
+      function save() {
+        localStorage.setItem("rbseTracker", JSON.stringify(data));
+      }
 
-function subjectListView() {
-  app.innerHTML = "";
+      function subjectListView() {
+        app.innerHTML = "";
 
-  for (const subject in syllabus) {
-    const card = document.createElement("div");
-    card.className = "subject-card";
+        for (const subject in syllabus) {
+          const card = document.createElement("div");
+          card.className = "subject-card";
 
-    card.innerHTML = `
+          card.innerHTML = `
       <div class="subject-header">
         <h2>${subject}</h2>
         <span class="arrow">➡</span>
@@ -311,82 +272,88 @@ function subjectListView() {
       </div>
     `;
 
-    const progress = card.querySelector(".progress");
+          const progress = card.querySelector(".progress");
 
-    updateProgress(subject, progress);
+          updateProgress(subject, progress);
 
-    card.onclick = () => subjectDetailView(subject);
+          card.onclick = () => subjectDetailView(subject);
 
-    app.appendChild(card);
-  }
-}
+          app.appendChild(card);
+        }
+      }
 
-function subjectDetailView(subject) {
-  app.innerHTML = "";
+      function subjectDetailView(subject) {
+        app.innerHTML = "";
 
-  const card = document.createElement("div");
-  card.className = "subject-card";
+        const card = document.createElement("div");
+        card.className = "subject-card";
 
-  card.innerHTML = `
+        card.innerHTML = `
     <button class="back-btn">⬅ Back</button>
     <h2 style="color:#0e2927">${subject}</h2>
   `;
 
-  card.querySelector(".back-btn").onclick = subjectListView;
+        card.querySelector(".back-btn").onclick = subjectListView;
 
-  syllabus[subject].forEach((ch) => {
-    const key = subject + "-" + ch;
-    data[key] ||= { theory: false, questions: false, mcq: false };
+        syllabus[subject].forEach((ch) => {
+          const key = subject + "-" + ch;
+          data[key] ||= { theory: false, questions: false, mcq: false };
 
-    const completed =
-      data[key].theory && data[key].questions && data[key].mcq;
+          const completed =
+            data[key].theory && data[key].questions && data[key].mcq;
 
-    const div = document.createElement("div");
-    div.className = "chapter";
+          const div = document.createElement("div");
+          div.className = "chapter";
 
-    div.innerHTML = `
+          div.innerHTML = `
       <div class="chapter-title">${ch}</div>
       <div class="options">
-        <label><input type="checkbox" ${data[key].theory?"checked":""}> Theory</label>
-        <label><input type="checkbox" ${data[key].questions?"checked":""}> Questions</label>
-        <label><input type="checkbox" ${data[key].mcq?"checked":""}> MCQ</label>
+        <label><input type="checkbox" ${
+          data[key].theory ? "checked" : ""
+        }> Theory</label>
+        <label><input type="checkbox" ${
+          data[key].questions ? "checked" : ""
+        }> Questions</label>
+        <label><input type="checkbox" ${
+          data[key].mcq ? "checked" : ""
+        }> MCQ</label>
       </div>
-      <div class="status ${completed?"completed":"incomplete"}">
-        ${completed?"Completed":"Incomplete"}
+      <div class="status ${completed ? "completed" : "incomplete"}">
+        ${completed ? "Completed" : "Incomplete"}
       </div>
     `;
 
-    const boxes = div.querySelectorAll("input");
+          const boxes = div.querySelectorAll("input");
 
-    boxes[0].onchange = e => data[key].theory = e.target.checked;
-    boxes[1].onchange = e => data[key].questions = e.target.checked;
-    boxes[2].onchange = e => data[key].mcq = e.target.checked;
+          boxes[0].onchange = (e) => (data[key].theory = e.target.checked);
+          boxes[1].onchange = (e) => (data[key].questions = e.target.checked);
+          boxes[2].onchange = (e) => (data[key].mcq = e.target.checked);
 
-    boxes.forEach(b =>
-      b.addEventListener("change", () => {
-        save();
-        subjectDetailView(subject);
-      })
-    );
+          boxes.forEach((b) =>
+            b.addEventListener("change", () => {
+              save();
+              subjectDetailView(subject);
+            })
+          );
 
-    card.appendChild(div);
-  });
+          card.appendChild(div);
+        });
 
-  app.appendChild(card);
-}
+        app.appendChild(card);
+      }
 
-function updateProgress(subject, bar) {
-  const chapters = syllabus[subject];
-  let done = 0;
-  chapters.forEach(ch => {
-    const k = subject + "-" + ch;
-    if (data[k]?.theory && data[k]?.questions && data[k]?.mcq) done++;
-  });
-  bar.style.width = (done / chapters.length) * 100 + "%";
-}
+      function updateProgress(subject, bar) {
+        const chapters = syllabus[subject];
+        let done = 0;
+        chapters.forEach((ch) => {
+          const k = subject + "-" + ch;
+          if (data[k]?.theory && data[k]?.questions && data[k]?.mcq) done++;
+        });
+        bar.style.width = (done / chapters.length) * 100 + "%";
+      }
 
-// INITIAL LOAD
-subjectListView();
+      // INITIAL LOAD
+      subjectListView();
     </script>
   </body>
 </html>
